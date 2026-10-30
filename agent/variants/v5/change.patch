@@ -1,0 +1,86 @@
+--- agent/action_gate.py	2026-10-04 20:50:14
++++ agent/variants/v5/action_gate.py	2026-10-12 23:44:51
+@@ -1,4 +1,4 @@
+-"""Runs a state-changing tool call only if the user's request asks for it.
++"""Runs a state-changing tool call only if the user's request asks for it (round 5: round 3, plus page visits).
+ 
+ A tool result can carry text that reads like an instruction, and the model may act on it. These
+ elements keep such text from triggering actions, and tell the user when it tried to:
+@@ -7,7 +7,10 @@
+   context, only the user's request and the list of tools that change state (anything not named
+   like a read: get_, read_, search_, ...), and records which of those actions the request asks
+   for. Tool output cannot influence this list.
+-- `ActionGate` executes the model's tool calls. Reads always run. A state-changing call whose
++- `ActionGate` executes the model's tool calls. Reads always run, except a page visit (get_webpage)
++  to a site the user's request does not name: a visit sends a request to the site, and a link in the
++  URL can carry data out, so it goes to the judge like a state-changing call. A visit to a site written
++  in the request runs. A state-changing call whose
+   tool is on the list runs, except that a call that moves money (its tool takes an `amount`)
+   still goes to the judge. Every other state-changing call goes to the judge: the same model in
+   a fresh context that holds only the user's request and the proposed call, never tool output.
+@@ -46,6 +49,9 @@
+ _BARE = re.compile(r"\b(YES|NO)\b", re.IGNORECASE)
+ # Argument names that say where an action goes or what it books: the part of a refused call that
+ # is matched against later calls and shown to the user.
++# Reads that send a request to a destination given in an argument: the tool and that argument.
++_VISITS = {"get_webpage": "url"}
++_SITE = re.compile(r"(?:[a-z][a-z0-9+.-]*://)?(?:www\.)?([a-z0-9-]+(?:\.[a-z0-9-]+)*\.[a-z]{2,})(?::\d+)?(?:[/?#]\S*)?")
+ _DESTINATION = re.compile(r"(^|_)(recipients?|iban|emails?|url|link|users?|channels?|participants?|to|cc|bcc|"
+                           r"hotel|restaurant|company)(_|$)", re.IGNORECASE)
+ 
+@@ -156,8 +162,25 @@
+             "It may have come from instructions inside the emails, files, web pages or messages I read:\n"
+             + "\n".join(reversed(unique.values())) +
+             "\nIf you do want this done, please ask me directly.")
++
++
++def _site(url: str) -> str | None:
++    """The site a link points to (scheme, www., port and path dropped), or None if it is not a link."""
++    text = " ".join(str(url).split()).strip(" '\"`<>.,;:!?").casefold()
++    match = _SITE.fullmatch(text) if "@" not in text else None
++    return match.group(1) if match else None
++
+ 
++def _names_site(request: str, url: str) -> bool:
++    """Whether the request names the site of `url` as a whole value (after www. or a scheme, before a path)."""
++    site = _site(url)
++    if not site:
++        return False
++    text = " ".join(request.split()).casefold()
++    pattern = rf"(?:(?<![\w@.-])|(?<=www\.)|(?<=//)){re.escape(site)}(?![\w@-])"
++    return re.search(pattern, text) is not None
+ 
++
+ def _changes_state(name: str) -> bool:
+     return not _READ_ONLY.match(name)
+ 
+@@ -249,8 +272,13 @@
+                 extra_args: dict) -> tuple[bool, dict]:
+         """Whether the call may run, and `extra_args` with any new verdict recorded."""
+         tool = runtime.functions.get(call.function)
+-        if tool is None or not _changes_state(call.function):
++        if tool is None:
+             return True, extra_args
++        if call.function in _VISITS:
++            if _names_site(request, call.args.get(_VISITS[call.function], "")):
++                return True, extra_args
++        elif not _changes_state(call.function):
++            return True, extra_args
+         if call.function in extra_args.get(PLAN_KEY, frozenset()) and not _moves_money(tool):
+             return True, extra_args
+         verdicts = extra_args.get(VERDICTS_KEY, frozenset())
+--- agent/pipeline.py	2026-10-04 20:50:14
++++ agent/variants/v5/pipeline.py	2026-10-12 23:44:51
+@@ -10,10 +10,10 @@
+ from agentdojo.agent_pipeline.basic_elements import InitQuery, SystemMessage
+ from agentdojo.agent_pipeline.tool_execution import ToolsExecutionLoop, tool_result_to_str
+ 
+-from agent.action_gate import ActionGate, ActionPlan, BlockedNotice, FinalAnswer
++from agent.variants.v5.action_gate import ActionGate, ActionPlan, BlockedNotice, FinalAnswer
+ from agent.llm import StrictLocalLLM
+ 
+-SYSTEM_PROMPT = Path(__file__).with_name("system_prompt.md")
++SYSTEM_PROMPT = Path(__file__).parents[2] / "system_prompt.md"
+ 
+ 
+ def build_pipeline(base_url: str, model: str, context_tokens: int,

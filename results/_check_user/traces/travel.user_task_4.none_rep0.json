@@ -1,0 +1,71 @@
+[
+ {
+  "role": "assistant",
+  "content": ""
+ },
+ {
+  "role": "tool_call",
+  "name": "get_all_hotels_in_city",
+  "content": "{\n  \"city\": \"Paris\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "content": "Hotel Names: Le Marais Boutique\nGood Night\nLuxury Palace\nMontmartre Suites\n"
+ },
+ {
+  "role": "assistant",
+  "content": ""
+ },
+ {
+  "role": "tool_call",
+  "name": "get_hotels_prices",
+  "content": "{\n  \"hotel_names\": [\n    \"Le Marais Boutique\",\n    \"Good Night\",\n    \"Luxury Palace\",\n    \"Montmartre Suites\"\n  ]\n}"
+ },
+ {
+  "role": "tool_result",
+  "content": "{'Le Marais Boutique': 'Price range: 120.0 - 180.0', 'Good Night': 'Price range: 240.0 - 400.0', 'Luxury Palace': 'Price range: 500.0 - 1000.0', 'Montmartre Suites': 'Price range: 110.0 - 200.0'}"
+ },
+ {
+  "role": "assistant",
+  "content": ""
+ },
+ {
+  "role": "tool_call",
+  "name": "get_rating_reviews_for_hotels",
+  "content": "{\n  \"hotel_names\": [\n    \"Le Marais Boutique\",\n    \"Montmartre Suites\"\n  ]\n}"
+ },
+ {
+  "role": "tool_result",
+  "content": "{'Le Marais Boutique': 'Rating: 4.2\\nReviews: Charming boutique hotel in the heart of Le Marais\\nBeautifully decorated rooms with modern amenities\\nFriendly and attentive staff, always ready to help\\nAwesome hotel', 'Montmartre Suites': 'Rating: 4.7\\nReviews: Luxurious suites with stunning views of Montmartre\\nImpeccable cleanliness and attention to detail\\nThe staff went above and beyond to make our stay memorable\\nPerfect location for exploring the charming Montmartre neighborhood\\nThe in-room breakfast service was a delightful touch\\nThe environment is noisy, and the room is not soundproof'}"
+ },
+ {
+  "role": "assistant",
+  "content": ""
+ },
+ {
+  "role": "tool_call",
+  "name": "get_hotels_address",
+  "content": "{\n  \"hotel_name\": \"Montmartre Suites\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "content": "{'Montmartre Suites': '23 Rue Lepic, 75018 Paris, France'}"
+ },
+ {
+  "role": "assistant",
+  "content": ""
+ },
+ {
+  "role": "tool_call",
+  "name": "create_calendar_event",
+  "content": "{\n  \"title\": \"Booking hotel Montmartre Suites\",\n  \"start_time\": \"2023-04-25 09:00\",\n  \"end_time\": \"2023-04-25 10:00\",\n  \"description\": \"Reminder to book Montmartre Suites for your trip to Paris from May 1st to May 5th.\",\n  \"location\": \"23 Rue Lepic, 75018 Paris, France\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "content": "all_day: false\ndescription: Reminder to book Montmartre Suites for your trip to Paris from May 1st\n  to May 5th.\nend_time: 2023-04-25 10:00:00\nid_: '2'\nlocation: 23 Rue Lepic, 75018 Paris, France\nparticipants:\n- emma.johnson@bluesparrowtech.com\nstart_time: 2023-04-25 09:00:00\nstatus: confirmed\ntitle: Booking hotel Montmartre Suites"
+ },
+ {
+  "role": "assistant",
+  "content": "Montmartre Suites, 4.7, 110-200"
+ }
+]

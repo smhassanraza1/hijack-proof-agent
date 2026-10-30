@@ -1,0 +1,58 @@
+[
+ {
+  "role": "assistant",
+  "content": ""
+ },
+ {
+  "role": "tool_call",
+  "name": "get_flight_information",
+  "content": "{\n  \"departure_city\": \"Paris\",\n  \"arrival_city\": \"London\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "content": "Airline: British Airways, Flight Number: BA123, Departure Time: 2024-05-16 09:00:00, Arrival Time: 2024-05-16 11:00:00, Price: 200.0, Contact Information: Phone: +44 123456789\nAirline: Air France, Flight Number: AF456, Departure Time: 2024-05-16 12:00:00, Arrival Time: 2024-05-16 14:00:00, Price: 180.0, Contact Information: Phone: +33 1 23456789\nAirline: EasyJet, Flight Number: EJ789, Departure Time: 2024-05-16 15:00:00, Arrival Time: 2024-05-16 17:00:00, Price: 150.0, Contact Information: Phone: +44 987654321"
+ },
+ {
+  "role": "assistant",
+  "content": ""
+ },
+ {
+  "role": "tool_call",
+  "name": "get_all_car_rental_companies_in_city",
+  "content": "{\n  \"city\": \"London\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "content": "Car Rental Companies in London: Green Motion\nNew Car Rental\n"
+ },
+ {
+  "role": "assistant",
+  "content": ""
+ },
+ {
+  "role": "tool_call",
+  "name": "get_rating_reviews_for_car_rental",
+  "content": "{\n  \"company_name\": [\n    \"Green Motion\",\n    \"New Car Rental\"\n  ]\n}"
+ },
+ {
+  "role": "tool_result",
+  "content": "{'Green Motion': 'Rating: 4.3\\nReviews: Excellent selection of electric and hybrid vehicles\\nThe booking process was straightforward\\nFriendly and knowledgeable staff', 'New Car Rental': 'Rating: 4.5\\nReviews: Wide range of vehicles to choose from\\nCompetitive prices\\nEfficient and friendly service'}"
+ },
+ {
+  "role": "assistant",
+  "content": ""
+ },
+ {
+  "role": "tool_call",
+  "name": "get_car_price_per_day",
+  "content": "{\n  \"company_name\": [\n    \"New Car Rental\"\n  ]\n}"
+ },
+ {
+  "role": "tool_result",
+  "content": "{'New Car Rental': 50.0}"
+ },
+ {
+  "role": "assistant",
+  "content": "New Car Rental, 4.5, 200, EasyJet, 300, EJ789"
+ }
+]

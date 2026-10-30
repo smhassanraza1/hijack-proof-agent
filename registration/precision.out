@@ -1,0 +1,61 @@
+test pairs 158, goals 15, users 47; benign 47
+per-rep flip prob: 15% pair flip -> 0.082; 1.3% -> 0.007
+hillclimb as run v3: n=79 delta=-0.316 CI [-0.558,-0.131] hw=0.214
+hillclimb as run v3-tool_knowledge: n=80 delta=-0.338 CI [-0.613,-0.123] hw=0.245
+
+== attack success, v3 - undefended, 158 test pairs ==
+ASR important_instructions flip15%                         R=1 n=158 delta=-0.290 cluster half-width=0.207 (p10-p90 0.187-0.226) P(cluster CI excl 0)=0.98 | conditional half-width=0.060 P(cond excl 0)=1.00
+ASR important_instructions flip15%                         R=2 n=158 delta=-0.286 cluster half-width=0.193 (p10-p90 0.176-0.212) P(cluster CI excl 0)=1.00 | conditional half-width=0.043 P(cond excl 0)=1.00
+ASR important_instructions flip15%                         R=3 n=158 delta=-0.283 cluster half-width=0.189 (p10-p90 0.177-0.202) P(cluster CI excl 0)=1.00 | conditional half-width=0.035 P(cond excl 0)=1.00
+ASR important_instructions flip1%                          R=1 n=158 delta=-0.284 cluster half-width=0.204 (p10-p90 0.187-0.217) P(cluster CI excl 0)=1.00 | conditional half-width=0.018 P(cond excl 0)=1.00
+ASR important_instructions flip1%                          R=2 n=158 delta=-0.287 cluster half-width=0.196 (p10-p90 0.188-0.208) P(cluster CI excl 0)=1.00 | conditional half-width=0.013 P(cond excl 0)=1.00
+ASR important_instructions flip1%                          R=3 n=158 delta=-0.287 cluster half-width=0.196 (p10-p90 0.188-0.205) P(cluster CI excl 0)=1.00 | conditional half-width=0.010 P(cond excl 0)=1.00
+ASR important_instructions flip15% (80 dev-run pairs only) R=1 n= 79 delta=-0.270 cluster half-width=0.238 (p10-p90 0.215-0.268) P(cluster CI excl 0)=0.75 | conditional half-width=0.085 P(cond excl 0)=1.00
+ASR important_instructions flip15% (80 dev-run pairs only) R=3 n= 79 delta=-0.260 cluster half-width=0.204 (p10-p90 0.183-0.224) P(cluster CI excl 0)=0.99 | conditional half-width=0.049 P(cond excl 0)=1.00
+ASR tool_knowledge flip15%                                 R=1 n=158 delta=-0.262 cluster half-width=0.207 (p10-p90 0.191-0.226) P(cluster CI excl 0)=0.96 | conditional half-width=0.060 P(cond excl 0)=1.00
+ASR tool_knowledge flip15%                                 R=2 n=158 delta=-0.266 cluster half-width=0.193 (p10-p90 0.176-0.207) P(cluster CI excl 0)=1.00 | conditional half-width=0.043 P(cond excl 0)=1.00
+ASR tool_knowledge flip15%                                 R=3 n=158 delta=-0.264 cluster half-width=0.187 (p10-p90 0.174-0.202) P(cluster CI excl 0)=1.00 | conditional half-width=0.035 P(cond excl 0)=1.00
+ASR tool_knowledge flip1%                                  R=1 n=158 delta=-0.328 cluster half-width=0.227 (p10-p90 0.215-0.238) P(cluster CI excl 0)=1.00 | conditional half-width=0.018 P(cond excl 0)=1.00
+ASR tool_knowledge flip1%                                  R=2 n=158 delta=-0.327 cluster half-width=0.225 (p10-p90 0.217-0.235) P(cluster CI excl 0)=1.00 | conditional half-width=0.013 P(cond excl 0)=1.00
+ASR tool_knowledge flip1%                                  R=3 n=158 delta=-0.328 cluster half-width=0.224 (p10-p90 0.216-0.233) P(cluster CI excl 0)=1.00 | conditional half-width=0.010 P(cond excl 0)=1.00
+ASR tool_knowledge flip15% (80 dev-run pairs only)         R=1 n= 80 delta=-0.279 cluster half-width=0.253 (p10-p90 0.226-0.279) P(cluster CI excl 0)=0.76 | conditional half-width=0.085 P(cond excl 0)=1.00
+ASR tool_knowledge flip15% (80 dev-run pairs only)         R=3 n= 80 delta=-0.280 cluster half-width=0.223 (p10-p90 0.206-0.241) P(cluster CI excl 0)=0.97 | conditional half-width=0.049 P(cond excl 0)=1.00
+
+== attack success, round 5 - round 3 (hypothetical: round 5 stops get_webpage goal; else = round 3) ==
+ASR v5-v3 tk (inj3 -> 5%) flip15%                          R=1 n=158 delta=-0.050 cluster half-width=0.143 (p10-p90 0.125-0.161) P(cluster CI excl 0)=0.02 | conditional half-width=0.060 P(cond excl 0)=0.38
+ASR v5-v3 tk (inj3 -> 5%) flip15%                          R=2 n=158 delta=-0.045 cluster half-width=0.119 (p10-p90 0.103-0.135) P(cluster CI excl 0)=0.01 | conditional half-width=0.043 P(cond excl 0)=0.55
+ASR v5-v3 tk (inj3 -> 5%) flip15%                          R=3 n=158 delta=-0.048 cluster half-width=0.111 (p10-p90 0.098-0.122) P(cluster CI excl 0)=0.03 | conditional half-width=0.035 P(cond excl 0)=0.72
+ASR v5-v3 tk, slack inj3 pairs only                        R=1 n= 11 delta=-0.640 cluster half-width=0.273 (p10-p90 0.227-0.409) P(cluster CI excl 0)=0.91 | conditional half-width=0.229 P(cond excl 0)=1.00
+ASR v5-v3 tk, slack inj3 pairs only                        R=2 n= 11 delta=-0.644 cluster half-width=0.250 (p10-p90 0.182-0.295) P(cluster CI excl 0)=1.00 | conditional half-width=0.162 P(cond excl 0)=1.00
+ASR v5-v3 tk, slack inj3 pairs only                        R=3 n= 11 delta=-0.642 cluster half-width=0.227 (p10-p90 0.182-0.273) P(cluster CI excl 0)=1.00 | conditional half-width=0.132 P(cond excl 0)=1.00
+
+== utility under attack, v3 - undefended ==
+UuA ii flip11%                                             R=1 n=158 delta=+0.034 cluster half-width=0.196 (p10-p90 0.172-0.217) P(cluster CI excl 0)=0.00 | conditional half-width=0.053 P(cond excl 0)=0.28
+UuA ii flip11%                                             R=2 n=158 delta=+0.028 cluster half-width=0.187 (p10-p90 0.173-0.199) P(cluster CI excl 0)=0.00 | conditional half-width=0.037 P(cond excl 0)=0.31
+UuA ii flip11%                                             R=3 n=158 delta=+0.025 cluster half-width=0.182 (p10-p90 0.170-0.193) P(cluster CI excl 0)=0.00 | conditional half-width=0.030 P(cond excl 0)=0.39
+UuA tk flip11%                                             R=1 n=158 delta=+0.107 cluster half-width=0.195 (p10-p90 0.179-0.214) P(cluster CI excl 0)=0.02 | conditional half-width=0.053 P(cond excl 0)=0.97
+UuA tk flip11%                                             R=2 n=158 delta=+0.111 cluster half-width=0.184 (p10-p90 0.171-0.199) P(cluster CI excl 0)=0.01 | conditional half-width=0.037 P(cond excl 0)=1.00
+UuA tk flip11%                                             R=3 n=158 delta=+0.110 cluster half-width=0.179 (p10-p90 0.167-0.191) P(cluster CI excl 0)=0.00 | conditional half-width=0.030 P(cond excl 0)=1.00
+
+== benign utility, 47 test tasks ==
+utility v3 ii-run flip2%                                   R=1 n= 46 delta=-0.095 cluster half-width=0.109 (p10-p90 0.098-0.120) P(cluster CI excl 0)=0.12 P(lower>-0.10)=0.00 | conditional half-width=0.042 P(cond excl 0)=0.99
+utility v3 ii-run flip2%                                   R=2 n= 46 delta=-0.097 cluster half-width=0.103 (p10-p90 0.098-0.114) P(cluster CI excl 0)=0.23 P(lower>-0.10)=0.00 | conditional half-width=0.030 P(cond excl 0)=1.00
+utility v3 ii-run flip2%                                   R=3 n= 46 delta=-0.096 cluster half-width=0.105 (p10-p90 0.098-0.109) P(cluster CI excl 0)=0.30 P(lower>-0.10)=0.00 | conditional half-width=0.024 P(cond excl 0)=1.00
+utility v3 ii-run flip2% (margin 0.15)                     R=2 n= 46 delta=-0.094 cluster half-width=0.103 (p10-p90 0.098-0.114) P(cluster CI excl 0)=0.22 P(lower>-0.15)=0.00 | conditional half-width=0.030 P(cond excl 0)=1.00
+utility v3 ii-run flip2% (margin 0.15)                     R=3 n= 46 delta=-0.095 cluster half-width=0.105 (p10-p90 0.094-0.109) P(cluster CI excl 0)=0.29 P(lower>-0.15)=0.01 | conditional half-width=0.024 P(cond excl 0)=1.00
+utility v3 tk-run flip2%                                   R=1 n= 47 delta=-0.065 cluster half-width=0.096 (p10-p90 0.074-0.106) P(cluster CI excl 0)=0.21 P(lower>-0.10)=0.00 | conditional half-width=0.041 P(cond excl 0)=0.88
+utility v3 tk-run flip2%                                   R=2 n= 47 delta=-0.064 cluster half-width=0.090 (p10-p90 0.080-0.101) P(cluster CI excl 0)=0.15 P(lower>-0.10)=0.00 | conditional half-width=0.029 P(cond excl 0)=0.99
+utility v3 tk-run flip2%                                   R=3 n= 47 delta=-0.063 cluster half-width=0.085 (p10-p90 0.078-0.096) P(cluster CI excl 0)=0.17 P(lower>-0.10)=0.00 | conditional half-width=0.024 P(cond excl 0)=0.97
+utility v3 tk-run flip2% (margin 0.15)                     R=2 n= 47 delta=-0.062 cluster half-width=0.090 (p10-p90 0.074-0.101) P(cluster CI excl 0)=0.14 P(lower>-0.15)=0.49 | conditional half-width=0.029 P(cond excl 0)=0.97
+utility v3 tk-run flip2% (margin 0.15)                     R=3 n= 47 delta=-0.061 cluster half-width=0.085 (p10-p90 0.078-0.096) P(cluster CI excl 0)=0.09 P(lower>-0.15)=0.49 | conditional half-width=0.024 P(cond excl 0)=1.00
+utility _def_tool_filter - v3                              R=1 n= 46 delta=-0.232 cluster half-width=0.179 (p10-p90 0.174-0.196) P(cluster CI excl 0)=0.91 | conditional half-width=0.042 P(cond excl 0)=1.00
+utility _def_tool_filter - v3                              R=2 n= 46 delta=-0.235 cluster half-width=0.179 (p10-p90 0.174-0.185) P(cluster CI excl 0)=0.99 | conditional half-width=0.030 P(cond excl 0)=1.00
+utility _def_transformers_pi_detector - v3                 R=1 n= 46 delta=-0.255 cluster half-width=0.152 (p10-p90 0.152-0.164) P(cluster CI excl 0)=1.00 | conditional half-width=0.042 P(cond excl 0)=1.00
+utility _def_transformers_pi_detector - v3                 R=2 n= 46 delta=-0.254 cluster half-width=0.152 (p10-p90 0.147-0.158) P(cluster CI excl 0)=1.00 | conditional half-width=0.030 P(cond excl 0)=1.00
+utility _def_repeat_user_prompt - v3                       R=1 n= 46 delta=+0.063 cluster half-width=0.141 (p10-p90 0.130-0.152) P(cluster CI excl 0)=0.00 | conditional half-width=0.042 P(cond excl 0)=0.94
+utility _def_repeat_user_prompt - v3                       R=2 n= 46 delta=+0.064 cluster half-width=0.141 (p10-p90 0.131-0.142) P(cluster CI excl 0)=0.00 | conditional half-width=0.030 P(cond excl 0)=0.98
+
+== false alarms (benign), v3 - undefended ==
+false_alarm v3                                             R=1 n= 46 delta=+0.087 cluster half-width=0.076 (p10-p90 0.076-0.076) P(cluster CI excl 0)=1.00 | conditional half-width=0.000 P(cond excl 0)=1.00
+false_alarm v3                                             R=2 n= 46 delta=+0.087 cluster half-width=0.076 (p10-p90 0.076-0.076) P(cluster CI excl 0)=1.00 | conditional half-width=0.000 P(cond excl 0)=1.00
+false_alarm v3                                             R=3 n= 46 delta=+0.087 cluster half-width=0.076 (p10-p90 0.076-0.076) P(cluster CI excl 0)=1.00 | conditional half-width=0.000 P(cond excl 0)=1.00
