@@ -8,7 +8,7 @@ eval-driven hillclimb on [AgentDojo](https://github.com/ethz-spylab/agentdojo) (
 evaluated under a registered protocol on every verified held-out case, half of them never run before.
 The defence combines published components (Plan-Then-Execute [6], Progent's deny-and-continue [4]);
 what this project adds is the measurement on a small local model. The
-[accompanying paper](https://doi.org/10.5281/zenodo.23811221) explains the work end to end, including
+[accompanying paper](https://doi.org/10.5281/zenodo.23811220) explains the work end to end, including
 the background a reader new to the field needs.
 
 ## Results
